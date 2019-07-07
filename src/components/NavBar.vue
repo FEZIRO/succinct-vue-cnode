@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav>
+    <nav :class="{'nav-shadow': shadow}">
       <ul>
         <li :class="$route.params.tab === item.id ? 'nav-item item-selected' : 'nav-item'"
           v-for="item of navBarTab"
@@ -18,6 +18,9 @@
 <script>
 export default {
   name: 'NavBar',
+  props: {
+    shadow: Boolean
+  },
   data () {
     return {
       navBarTab:[{
@@ -41,23 +44,26 @@ export default {
           icon:'&#xe600;',
           name:'招聘'
         }],
-     defaultTab: 'all'
+      currentTab: 'all',
     }
   },
   mounted() {
-    this.$router.push({
-      name:'articlelist',
-      params:{ tab: this.defaultTab } 
-    })
-    window.scrollTo(0,0)
+    //this.handleTabClick(this.currentTab)
   },
   methods: {
     handleTabClick(tabId) {
       this.$router.push({
         name:'articlelist',
-        params:{ tab:tabId } 
+        params:{ tab:tabId },
       })
-      window.scrollTo(0,0)
+      this.currentTab = tabId
+      window.scrollTo(0,0);
+      this.$store.commit('changeHeaderNavShow')
+    }
+  },
+  watch: {
+    '$route.params.id' (newVal){
+      this.currentTab = newVal
     }
   },
 }
@@ -67,6 +73,9 @@ export default {
 @import '../assets/styles/common.scss';
 nav {
   width: 200px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
   .nav-item {
     line-height: 50px;
     width: 80%;
@@ -77,7 +86,7 @@ nav {
     font-weight: bold;
     margin-top: 5px;
     &:first-child {
-      margin-top: 30px;
+      
     }
     .icon {
       margin-right: 5px;
@@ -98,10 +107,14 @@ nav {
   }
 }
 
-@media screen and (max-width: 768px) {
+.nav-shadow {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .06);
+}
+
+/* @media screen and (max-width: 768px) {
   nav {
     display: none;
   }
-}
+} */
 </style>
 

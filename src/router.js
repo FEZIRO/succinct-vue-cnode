@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ArticleList from './pages/ArticleList.vue'
-
 Vue.use(Router)
 
 export default new Router({
@@ -11,10 +9,12 @@ export default new Router({
     {
       path: '/:tab',
       name: 'articlelist',
-      params:{
-        tab: 'all'
-      },
-      component: ArticleList
+      component: () => import('./pages/ArticleList.vue')
+    },
+    {
+      path:'/topic/content',
+      name:'articlecontent',
+      component: () => import('./pages/ArticleContent.vue')
     }
   ]
 })

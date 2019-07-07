@@ -2,6 +2,7 @@ import axios from "axios";
 
 const CNODE_API_BASE = 'https://cnodejs.org/api/v1'
 const TOPICS = '/topics'
+const TOPIC_CONTENT ='/topic/'
 
 export const requestTopics = function(data) {
   return new Promise((resolve,reject)=>{
@@ -17,7 +18,25 @@ export const requestTopics = function(data) {
         }
       })
       .catch(e=>{
-        console.log('获取TAB_ALL内容失败',e);
+        console.log('获取TOPICS内容失败',e);
+        reject(e)
+      })
+  })
+}
+
+export const requestTopicContent = function(id) {
+  return new Promise((resolve,reject)=>{
+    axios
+      .get(CNODE_API_BASE+TOPIC_CONTENT+id)
+      .then((res)=>{
+        if(res.data.success){
+          resolve(res.data.data)
+        }else{
+          reject(res);
+        }
+      })
+      .catch(e=>{
+        console.log('获取TOPIC_CONTENT内容失败',e);
         reject(e)
       })
   })

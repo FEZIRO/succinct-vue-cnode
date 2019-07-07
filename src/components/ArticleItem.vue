@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container" @click="getContent">
       <section class="title">
         <span class="tag top-tag" v-if="itemData.top">置顶</span>
         <span class="tag top-tag" v-else-if="itemData.good">精华</span>
@@ -34,19 +34,25 @@ export default {
   },
   data() {
     return {
-      tag:{
-        all:'全部',
-        share:'分享',
-        ask:'问答',
-        good:'精华',
-        job:'工作'
-      },
+      tag: this.$store.state.tag,
+      createAt: ''
     }
   },
-  computed: {
-    createAt () {
-      return getDate(this.itemData.create_at)
+  methods: {
+    getContent(){
+      //console.log(this.itemData);
+      this.$router.push({
+        name:'articlecontent',
+        query:{
+          id: this.itemData.id,
+          author: this.itemData.author.loginname
+        }
+      })
     }
+    
+  },
+  mounted() {
+    this.createAt = getDate(this.itemData.create_at)
   },
 }
 </script>
@@ -54,13 +60,11 @@ export default {
 <style lang="scss" scoped>
 .container {
   height: 120px;
-  
   padding: 15px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   border-bottom: 1px solid rgba(0, 0, 0, .05);
-  
   .title,
   .author,
   .count {
@@ -108,19 +112,20 @@ export default {
         width: 20px;
         height: 20px;
         background-size: contain;
-        
         border-radius: 50%;
       }
       .author-name{
+        line-height: 20px;
+        
         margin-left: 5px;
       }
     }
 
     .create-at {
+      text-align: right;
       font-size: 13px;
       color:rgba(0, 0, 0, .5)
     }
-    
   }
 
   .count {
@@ -135,4 +140,15 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 350px) {
+  .author{
+    .author-name { 
+      width: 80px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
 </style>
