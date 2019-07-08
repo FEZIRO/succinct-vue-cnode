@@ -9,12 +9,12 @@ export default new Router({
     {
       path: '/:tab',
       name: 'articlelist',
-      component: () => import('./pages/ArticleList.vue')
+      component: () => import('./pages/Home.vue')
     },
     {
       path:'/topic/content',
       name:'articlecontent',
-      component: () => import('./pages/ArticleContent.vue')
+      component: () => import('./pages/Content.vue')
     }
   ]
 })

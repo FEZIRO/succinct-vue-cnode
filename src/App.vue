@@ -31,16 +31,8 @@ export default {
       }else{
         this.$store.commit('changeDevice','computer')
     }
-  },
-  mounted () {
     this.onResizeChange();
-    this.$router.push({
-      name:'articlelist',
-      params:{ tab: 'all' } 
-    })
-    window.scrollTo(0,0)
   },
-
 }
 </script>
 
@@ -48,6 +40,7 @@ export default {
 #app {
   display: flex;
   flex-direction: column;
+  
 }
 
 .routerview-enter-active {
@@ -60,14 +53,14 @@ export default {
 
 @keyframes fadeIn {
   from {
-    transform: translateY(-20px);
-    //transform: scale(10%);
+    transform: translateY(20px);
+    
     opacity: 0;
   }
 
   to {
-    //transform: translateY(0);
-    //transform: scale(0%);
+    transform: translateY(0);
+    
     opacity: 100;
   }
 }

@@ -44,11 +44,8 @@ export default {
           icon:'&#xe600;',
           name:'招聘'
         }],
-      currentTab: 'all',
+      currentTab: this.$route.params.tab ? this.$route.params.tab : 'all',
     }
-  },
-  mounted() {
-    //this.handleTabClick(this.currentTab)
   },
   methods: {
     handleTabClick(tabId) {
@@ -57,12 +54,13 @@ export default {
         params:{ tab:tabId },
       })
       this.currentTab = tabId
-      window.scrollTo(0,0);
+      window.scrollTo(0,0)
       this.$store.commit('changeHeaderNavShow')
     }
   },
   watch: {
     '$route.params.id' (newVal){
+      if (!newValue) return
       this.currentTab = newVal
     }
   },

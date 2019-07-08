@@ -1,11 +1,15 @@
 <template>
-  <div class="container">
+  <div class="author-container">
     <div class="title">作者</div>
     <div class="author">
       <div class="avatar">
-        <img class="avatat-img"  alt=""/>
+        <img class="avatar-img" 
+          :src="authorData.avatar_url" 
+          alt=""/>
       </div>
+      {{authorData.loginname}}
     </div>
+    <div class="score">积分{{authorData.score}}</div>
   </div>
 </template>
 
@@ -19,25 +23,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding: 10px;
+.author-container {
+  width: 200px;
+  height: 300px;
   border-radius: 10px;
-  
+  background: #fff;
+  position: relative;
   .title {
-    font-size: 18px;
+    width: 100%;
+    padding: 18px;
+    font-size: 15px;
     font-weight: bold;
     border-bottom:1px solid rgba(0, 0, 0, .05);
   }
   .author {
+    height: 50px;
+    padding: 10px;
     .avatar{
+      display: inline-block;
       width: 30px;
       height: 30px;
-      border-radius: 50%;
-      background: red;
+      line-height: 30px;
+      background-size: contain;
       .avatar-img {
-        width: 100%
+        width: 100%;
+        border-radius: 50%;
       }
     }
+  }
+  .score {
+    line-height: 20px;
+    color:rgb(122, 103, 103);
+    padding: 10px 15px;
   }
 }
 </style>

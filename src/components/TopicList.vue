@@ -1,58 +1,43 @@
 <template>
-  <div class="container">
-    
-    <main v-if="isListShow">
-      <NavBar :shadow="true" class="nav-bar"
-        v-show="this.$store.state.currentDevice === 'computer'"></NavBar>
-      <div class="article-container"> 
-        <ArticleItem class="item" 
-          :item-data="item"
-          v-for="item of tabAllData"
-          :key="item.id"
-          ></ArticleItem>
-        <Pagination class="pagination"
-          @page-change="getCurrentPageData"></Pagination>
-      </div>
-    </main>
-    <Loading class="loading" v-else></Loading>
+  <div class="topic-list" v-if="topicListData"> 
+    <TopicItem class="item" 
+      :item-data="item"
+      v-for="item of topicListData"
+      :key="item.id"
+    ></TopicItem>
+    <Pagination class="pagination"
+      @page-change="getCurrentPageData"></Pagination>
   </div>
 </template>
 
 <script>
-import ArticleItem from '@/components/ArticleItem';
-import Pagination from '@/components/Pagination';
-import Loading from '@/components/Loading';
-
-import NavBar from '@/components/NavBar';
+import { getDate } from '../utils/formatDate';
 import { requestTopics } from '@/utils/requestApi';
+import TopicItem from '@/components/TopicItem';
+import Pagination from '@/components/Pagination';
 
 export default {
-  name: 'ArticleList',
+  name: 'TopicList',
+  components: {
+    TopicItem,
+    Pagination
+  },
   data () {
     return {
-      tabAllData: [],
-      isListShow: false,
-      isSmall: false,
+      topicListData: null 
     }
-  },
-  components: {
-    ArticleItem,
-    Pagination,
-    NavBar,
-    Loading
   },
   methods: {
     //根据tab的名字获取相应tab的内容
     getData(queryParams) {
       requestTopics(queryParams)
       .then((res)=>{
-        this.tabAllData = res;
-        this.isListShow = true;
+        this.topicListData = res;
         window.scrollTo(0,0);
       });
      
     },
-    
+
     //获取当前页数的数据
     getCurrentPageData(currentPage) {
       console.log(currentPage);
@@ -64,7 +49,6 @@ export default {
       }
       
     },
-
   },
   watch: {
     '$route.params.tab'(newVal){
@@ -74,42 +58,26 @@ export default {
         page: 1
       });
     },
-
   },
-  mounted() {
+  mounted () {
     this.getData({
         tab: this.$route.params.tab,
         page: 1
       });
-  },
+  }
+  
 }
 </script>
 
 <style lang="scss" scoped>
-.container{
-  position: relative;
-  main {
-    width: 100%;
-    display: flex;
-    box-sizing: border-box;
-    position: absolute;
-    top: 60px;
-    background: #eee;
-    padding: 20px;
-    @media screen and (max-width: 768px) {
-      padding: 10px
-    }
-
-    .nav-bar{
-      position: fixed;
-    }
-    .article-container {
+@import '../assets/styles/common.scss';
+ .topic-list {
       width: 100%;
       border-radius: 10px;
       box-shadow: 0 0 5px 0 rgba(0, 0, 0, .06);
       box-sizing: border-box;
       background: #fff;
-      margin-left: 240px;
+      margin-left: 220px;
       display: flex;
       flex-direction: column;
       .item:hover {
@@ -137,9 +105,4 @@ export default {
         }
       }
     }
-  }
-}
 </style>
-
-
-

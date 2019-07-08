@@ -22,13 +22,13 @@
       </section>
     </div>
   </div>
-</template>
+</template> 
 
 <script>
 import { getDate } from '../utils/formatDate'
 
 export default {
-  name: 'ArticleItem',
+  name: 'TopicItem',
   props:{
     itemData: Object
   },
