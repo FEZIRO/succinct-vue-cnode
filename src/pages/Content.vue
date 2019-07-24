@@ -2,20 +2,21 @@
   <div class="container" v-if="topicData && authorData">
     <main class="content-container" >
       <Article :topic-data="topicData" class="article"></Article>
-      <Reply></Reply>
+      <Reply :reply-data="topicData.replies"></Reply>
     </main>
     <div class="user-info-container">
-      <Author :author-data="authorData"></Author>
+      <AuthorSideBar :author-data="authorData"
+        class="author-sidebar"></AuthorSideBar>
     </div>
-    <!-- <Loading v-else></Loading> -->
+    
   </div>
 </template>
 
 <script>
 import { requestTopicContent, requestAuthorData } from '@/utils/requestApi'
-import { getDate } from '@/utils/formatDate'
+import { getDateTime } from '@/utils/formatDate'
 import Article from '@/components/Article';
-import Author from '@/components/Author';
+import AuthorSideBar from '@/components/AuthorSideBar';
 import Header from '@/components/Header';
 import Loading from '@/components/Loading';
 import Reply from '@/components/Reply';
@@ -30,7 +31,7 @@ export default {
   components: {
     Header,
     Article,
-    Author,
+    AuthorSideBar,
     Loading,
     Reply
   },
@@ -39,21 +40,27 @@ export default {
       requestTopicContent(this.$route.query.id)
       .then((res)=>{
           this.topicData = res;
-          this.topicData.create_at = getDate(res.create_at)
+          window.scrollTo(0,0)
         })
     },
 
     getAuthorData() {
       requestAuthorData(this.$route.query.author).then((res)=>{
           this.authorData = res;
-          //this..create_at = getDate(res.create_at)
+          
         })
     }
   },
   mounted () {
     this.getArticle();
     this.getAuthorData();
-   //console.log(this.$route)
+   
+  },
+  watch: {
+    '$route.query'(){
+      this.getArticle();
+      this.getAuthorData();
+    }
   },
 
 }
@@ -61,18 +68,29 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  padding: 80px 20px 20px 20px;
+  padding: 80px 15px 20px 15px;
   display: flex;
   .content-container {
     flex-grow: 1;
-    .article {
-      background: #fff;
-    }
   }
   .user-info-container {
+    width: 250px; 
     margin-left: 20px;
     flex-shrink: 0;
   }
-
 }
+
+@media screen and (max-width: 768px) {
+    .container {
+      padding: 70px 10px 10px 10px;
+      
+      .content-container{
+        width: 100%;
+      }
+      .user-info-container{
+        display: none;
+         width: 0vw;
+      }
+    }
+  }
 </style>

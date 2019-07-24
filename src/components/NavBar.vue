@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <nav :class="{'nav-shadow': shadow}">
-      <ul>
-        <li :class="$route.params.tab === item.id ? 'nav-item item-selected' : 'nav-item'"
-          v-for="item of navBarTab"
-          :key="item.id"
-          @click="handleTabClick(item.id)">
-          <i class="iconfont icon" 
-            v-html="item.icon"></i>
-            {{item.name}}
-        </li>
-      </ul>
-    </nav>
-  </div>
+  <nav :class="{'nav-shadow': shadow}">
+    <ul>
+      <li :class="$route.params.tab === item.id ? 'nav-item item-selected' : 'nav-item'"
+        v-for="item of navBarTab"
+        :key="item.id"
+        @click="handleTabClick(item.id)">
+        <i class="iconfont icon" 
+          v-html="item.icon"></i>
+          {{item.name}}
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>
@@ -23,27 +21,7 @@ export default {
   },
   data () {
     return {
-      navBarTab:[{
-          id:'all',
-          icon:'&#xe6ef;',
-          name:'全部'
-        },{
-          id:'good',
-          icon:'&#xe66e;',
-          name:'精华'
-        },{
-          id:'share',
-          icon:'&#xe604;',
-          name:'分享'
-        },{
-          id:'ask',
-          icon:'&#xe603;',
-          name:'问答'
-        },{
-          id:'job',
-          icon:'&#xe600;',
-          name:'招聘'
-        }],
+      navBarTab:this.$store.state.navTab,
       currentTab: this.$route.params.tab ? this.$route.params.tab : 'all',
     }
   },
@@ -68,8 +46,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/common.scss';
+@import '@/assets/styles/common.scss';
 nav {
+  height: 350px;
   width: 200px;
   background: #fff;
   padding: 10px;
@@ -78,14 +57,11 @@ nav {
     line-height: 50px;
     width: 80%;
     margin: 0 auto;
-    border-radius: 15px;
+    border-radius: 10px;
     text-align: center;
     color: $nodeBlack;
     font-weight: bold;
     margin-top: 5px;
-    &:first-child {
-      
-    }
     .icon {
       margin-right: 5px;
     }
@@ -93,7 +69,7 @@ nav {
       color: #fff;
       cursor: pointer;
       background: $nodeGreen;
-      opacity: .8;
+      transition: all .3s;
     }
   }
 
@@ -101,12 +77,11 @@ nav {
     color: #fff;
     cursor: pointer;
     background: $nodeGreen;
-    opacity: .8;
   }
 }
 
 .nav-shadow {
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .06);
+  box-shadow: $shadow;
 }
 
 /* @media screen and (max-width: 768px) {

@@ -7,6 +7,12 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/',
+      redirect:{
+        path:'/all'
+      }
+    },
+    {
       path: '/:tab',
       name: 'articlelist',
       component: () => import('./pages/Home.vue')
@@ -15,6 +21,11 @@ export default new Router({
       path:'/topic/content',
       name:'articlecontent',
       component: () => import('./pages/Content.vue')
+    },
+    {
+      path:'/topic/author',
+      name:'author',
+      component: () => import('./pages/Author.vue')
     }
   ]
 })

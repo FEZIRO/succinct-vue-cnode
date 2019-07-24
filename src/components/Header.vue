@@ -1,20 +1,24 @@
 <template>
-  <div class="container">
-    <header>
-      <div class="header-logo"
-        @click="handleHeaderClick">
-        <img class="logo-img" src="../assets/imgs/cnodejs-logo.svg" alt="">
+  <div class="header-container">
+    <header :class="{'shadow':!this.$store.state.isShowNavTab}">
+      <div>
+        <div class="header-logo"
+          @click="handleHeaderClick">
+          <img class="logo-img" src="../assets/imgs/cnodejs-logo.svg" alt="">
+        </div>
+        <a class="cnode-link" href="https://cnodejs.org">CNode中文社区</a>
+        <button class="iconfont nav-icon" 
+          :class="this.$store.state.isShowNavTab ? 'icon-guanbi' : 'icon-daohanglan'"
+          @click="handleNavButtonClick"></button>
       </div>
-      <button class="iconfont nav-icon " 
-        :class="this.$store.state.isShowNavTab ? 'icon-guanbi' : 'icon-daohanglan'"
-        @click="handleNavButtonClick"></button>
-      <transition name="slide">
-        <nav class="nav-container" 
-          v-show="this.$store.state.isShowNavTab && this.$store.state.currentDevice === 'mobile'">
-          <NavBar></NavBar>
-        </nav>
-      </transition>
-    </header>
+       
+      </header>
+    <transition name="slide">
+      <nav class="nav-container" 
+        v-show="this.$store.state.isShowNavTab && this.$store.state.currentDevice === 'mobile'">
+        <NavBar></NavBar>
+      </nav>
+    </transition>
   </div>
 </template>
 
@@ -49,14 +53,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-header {
+@import '@/assets/styles/common.scss';
+  .header-container{
+    
+    position: relative;
+    .nav-container {
+      width: 1300px;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        top:60px;
+        width: 100%;
+        box-shadow: 0 3px 5px 0 #eee;
+        background: #fff;
+        z-index: 2;
+      }
+  }
+
+  header {
     position: fixed;
     width: 100%;
     height: 60px;
     line-height: 60px;
-    border-bottom: 1px solid #eee;
     background: #fff;
     z-index: 999;
+    
     .header-logo {
       position: absolute;
       left: 60px;
@@ -69,6 +91,19 @@ header {
         height: 100%;
       }
     }
+    .cnode-link{
+      display: block;
+      width: auto;
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+      color: #000;
+      font-weight: bold;
+      float: right;
+      margin-right: 50px;
+    }
+    
+
     .nav-icon {
       position: absolute;
       right: 20px;
@@ -76,47 +111,46 @@ header {
       background: #fff;
       display: none;
     }
-    .nav-container {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      top:60px;
-      width: 100%;
+  }
+  
+  @media screen and (max-width: 768px) {
+    header{
+      .header-logo{
+        left: 50%;
+        margin-left: -50px;
+      }
+      .cnode-link{
+        display: none;
+      }
       
-      box-shadow: 0 3px 5px 0 #eee;
-      background: #fff;
-    }
-    .slide-enter-active {
-      animation: slide-down 0.4s ease-in-out;
-    }
-    .slide-leave-active {
-      animation: slide-down 0.4s reverse ease-in-out;
-    }
-  
-    @keyframes slide-down {
-      from {
-        transform: translateY(-100%);
-      }
-      to {
-        transform: translateY(0);
+     
+
+      .nav-icon{
+        display: block;
       }
     }
   }
-  
-@media screen and (max-width: 768px) {
-  header{
-    .header-logo{
-      left: 50%;
-      margin-left: -50px;
-    }
 
-    .nav-icon{
-      display: block;
+  .slide-enter-active {
+    animation: slide-down 0.4s ease-in-out;
+  }
+
+  .slide-leave-active {
+    animation: slide-down 0.4s reverse ease-in-out;
+  }
+  
+  @keyframes slide-down {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
     }
   }
-}
 
+  .shadow{
+    box-shadow: $shadow;
+  }
   
 </style>
 

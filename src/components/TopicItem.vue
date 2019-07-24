@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <div class="container" @click="getContent">
+    <div class="topic-item-container" @click="getContent">
       <section class="title">
         <span class="tag top-tag" v-if="itemData.top">置顶</span>
-        <span class="tag top-tag" v-else-if="itemData.good">精华</span>
+        <span class="tag " v-else-if="itemData.good">精华</span>
         <span class="tag" v-else>{{tag[itemData.tab]}}</span>
         <h1>{{itemData.title}}</h1>
       </section>
@@ -21,11 +20,10 @@
         <div class="reply-count">{{itemData.reply_count}} 回复</div>
       </section>
     </div>
-  </div>
 </template> 
 
 <script>
-import { getDate } from '../utils/formatDate'
+import { getDate,getDateTime } from '../utils/formatDate'
 
 export default {
   name: 'TopicItem',
@@ -43,6 +41,9 @@ export default {
       //console.log(this.itemData);
       this.$router.push({
         name:'articlecontent',
+        params:{
+          tab: this.$route.params.tab
+        },
         query:{
           id: this.itemData.id,
           author: this.itemData.author.loginname
@@ -52,14 +53,16 @@ export default {
     
   },
   mounted() {
-    this.createAt = getDate(this.itemData.create_at)
+    this.createAt = getDateTime(this.itemData.create_at,1)
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.container {
-  height: 120px;
+@import '@/assets/styles/common.scss';
+
+.topic-item-container {
+  min-height: 120px;
   padding: 15px 20px;
   display: flex;
   flex-direction: column;
@@ -81,14 +84,16 @@ export default {
       line-height: 25px;
       margin-right: 5px;
       text-align: center;
-      background: rgb(197,225,15);
+      /* background: rgb(197,225,15); */
+      background: $nodeGreen;
       border-radius: 10px;
       color:#fff;
       font-size: 13px;
       flex-shrink: 0;
     }
     .top-tag{
-      background: rgb(108,194,74);
+      /* background: rgb(108,194,74); */
+      background: $nodeDeepGreen;
     }
     h1 {
       font-weight: bold;

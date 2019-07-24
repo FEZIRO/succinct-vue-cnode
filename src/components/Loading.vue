@@ -1,7 +1,5 @@
 <template>
-  <div class="loading-container">
     <div class="loading"></div>
-  </div>
 </template>
 
 <script>
@@ -15,14 +13,13 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/common.scss';
 
-.loading-container {
-  width: 100vw;
-  height: 100vh;
+/* .loading-container {
+ 
   display: flex;
   justify-content: center;
   align-items: center;
   background: #fff;
-  
+   */
   .loading {
     width: 50px;
     height: 50px;
@@ -45,5 +42,5 @@ export default {
       transform: rotate(360deg)
     }  
   }
-}
+/* } */
 </style>
