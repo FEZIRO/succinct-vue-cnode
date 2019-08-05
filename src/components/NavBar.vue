@@ -1,5 +1,5 @@
 <template>
-  <nav :class="{'nav-shadow': shadow}">
+  <nav :class="{'nav-shadow': shadow}" class="navbar-container">
     <ul>
       <li :class="$route.params.tab === item.id ? 'nav-item item-selected' : 'nav-item'"
         v-for="item of navBarTab"
@@ -48,8 +48,8 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/styles/common.scss';
 nav {
-  height: 350px;
-  width: 200px;
+  
+  width: 250px;
   background: #fff;
   padding: 10px;
   border-radius: 10px;
@@ -84,10 +84,6 @@ nav {
   box-shadow: $shadow;
 }
 
-/* @media screen and (max-width: 768px) {
-  nav {
-    display: none;
-  }
-} */
+
 </style>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="reply-container">
     <div class="reply-count">{{replyData.length}} 回复</div>
-    <ul class="reply-list">
+    <ul class="reply-list" v-if="replyData.length!==0">
       <li v-for="(item,index) in replyData"
         :key="item.id">
         <div class="answerer-info">
@@ -16,6 +16,7 @@
         <p class="markdown-body" v-html="item.content"></p>
       </li>
     </ul>
+    <div class="content-empty" v-else>空</div>
   </div>
 </template>
 
@@ -108,6 +109,14 @@ export default {
       margin-left: 40px;
     }
   }
+
+  .content-empty{
+      height: 50px;
+      line-height: 50px;
+      font-weight: bold;
+      color: #ccc;
+      text-align: center;
+    }
 }
 
 @media screen and (max-width: 768px) {

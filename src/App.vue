@@ -2,7 +2,7 @@
   <div id="app">
     <Header></Header>
     <transition name="routerview">
-        <router-view></router-view>
+        <router-view class="router-view"></router-view>
     </transition>
   </div>
 </template>
@@ -15,9 +15,9 @@ export default {
     onResizeChange() {
       window.addEventListener('resize',(e)=>{
         if(document.body.clientWidth<768){
-          this.$store.commit('changeDevice','mobile')
+          this.$store.commit('changeDevice','mobile');
         }else{
-          this.$store.commit('changeDevice','computer')
+          this.$store.commit('changeDevice','computer');
         }
       })
     },
@@ -38,9 +38,12 @@ export default {
 
 <style lang="scss" scoped>
 #app {
-  display: flex;
-  flex-direction: column;
   
+}
+
+.router-view{
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .routerview-enter-active {

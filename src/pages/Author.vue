@@ -1,6 +1,6 @@
 <template>
   <div class="author-page">
-    <AuthorSideBar :author-data="authorData" class="info"></AuthorSideBar> 
+    <AuthorSideBar :author-data="authorData" class="info"/>
   </div>
 </template>
 
