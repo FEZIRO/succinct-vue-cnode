@@ -66,20 +66,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content-container {
-  padding: 80px 0 20px 0;
-  display: flex;
-  .content-main {
-    flex-grow: 1;
+  .content-container {
+    padding: 80px 0 20px 0;
+    display: flex;
+    .content-main {
+      flex-grow: 1;
+    }
+    .user-info-container {
+      width: 250px;
+      margin-left: 20px;
+      flex-shrink: 0;
+    }
   }
-  .user-info-container {
-    width: 250px;
-    margin-left: 20px;
-    flex-shrink: 0;
-  }
-}
 
-.loading-container{
+  .loading-container{
     width: 100%;
     height: 100vh;
     position: absolute;
@@ -93,17 +93,17 @@ export default {
     align-items: center;
   }
 
-@media screen and (max-width: 768px) {
-  .container {
-    padding: 70px 10px 10px 10px;
-
+  @media screen and (max-width: 768px) {
     .content-container {
-      width: 100%;
-    }
-    .user-info-container {
-      display: none;
-      width: 0vw;
+      padding: 70px 10px 10px 10px;
+
+      .content-main {
+        width: 100%;
+      }
+      
+      .user-info-container {
+          display: none;
+        }
     }
   }
-}
 </style>

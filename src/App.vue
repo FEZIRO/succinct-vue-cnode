@@ -2,70 +2,96 @@
   <div id="app">
     <Header></Header>
     <transition name="routerview">
-        <router-view class="router-view"></router-view>
+      <router-view class="router-view"></router-view>
     </transition>
+    <ScrollTop :show="isShowScrollTopButton"/>
   </div>
 </template>
 
 <script>
-import Header from '@/components/Header';
+import ScrollTop from "@/components/ScrollTop";
+import Header from "@/components/Header";
+import {throttleFn} from '@/utils/throttle'
 export default {
-  name: 'app',
-  methods: {
-    onResizeChange() {
-      window.addEventListener('resize',(e)=>{
-        if(document.body.clientWidth<768){
-          this.$store.commit('changeDevice','mobile');
-        }else{
-          this.$store.commit('changeDevice','computer');
-        }
-      })
-    },
+  name: "app",
+  data() {
+    return {
+      isShowScrollTopButton: false
+    };
   },
   components: {
-    Header
+    Header,
+    ScrollTop
   },
-  created () {
-    if(document.body.clientWidth<768){
-        this.$store.commit('changeDevice','mobile')
-      }else{
-        this.$store.commit('changeDevice','computer')
+  methods: {
+    onResizeChange() {
+      window.addEventListener("resize", () => {
+        this.checkDevice();
+      });
+    },
+
+    checkDevice() {
+      let clientWidth =
+        document.documentElement.clientWidth || document.body.clientHeight;
+      if (clientWidth < 768) {
+        this.$store.commit("changeDevice", "mobile");
+      } else {
+        this.$store.commit("changeDevice", "computer");
+      }
+    },
+
+    onScrollChange() {
+      //滚动监听节流
+      window.addEventListener("scroll", throttleFn(() => {
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop > 700) {
+          this.isShowScrollTopButton = true;
+        } else {
+          this.isShowScrollTopButton = false;
+        }
+        },500)
+      )
     }
-    this.onResizeChange();
   },
-}
+
+  created() {
+    this.checkDevice();
+  },
+
+  mounted() {
+    this.onResizeChange();
+    this.onScrollChange();
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 #app {
-  
 }
 
-.router-view{
+.router-view {
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .routerview-enter-active {
-  animation: fadeIn .2s 
+  animation: fadeIn 0.2s;
 }
 
 .routerview-leave-active {
-  animation: fadeIn reverse .2s ;
+  animation: fadeIn reverse 0.2s;
 }
 
 @keyframes fadeIn {
   from {
     transform: translateY(20px);
-    
     opacity: 0;
   }
 
   to {
     transform: translateY(0);
-    
+
     opacity: 100;
   }
 }
-
 </style>

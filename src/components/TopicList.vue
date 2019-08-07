@@ -23,6 +23,9 @@ import { requestTopics } from '@/utils/requestApi';
 import TopicItem from '@/components/TopicItem';
 import Pagination from '@/components/Pagination';
 import Loading from '@/components/Loading';
+import NProgress from 'nprogress'
+NProgress.configure({ showSpinner: false });
+import 'nprogress/nprogress.css'
 
 export default {
   name: 'TopicList',
@@ -39,17 +42,19 @@ export default {
   methods: {
     //根据tab的名字获取相应tab的内容
     getData(queryParams) {
+      NProgress.start();
       requestTopics(queryParams)
       .then((res)=>{
         this.topicListData = res;
         window.scrollTo(0,0);
+        NProgress.done();
       });
      
     },
 
     //获取当前页数的数据
     getCurrentPageData(currentPage) {
-      console.log(currentPage);
+      // console.log(currentPage);
       if(currentPage >= 1){
         this.getData({
           tab:this.$route.params.tab,
@@ -80,76 +85,87 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/styles/common.scss';
-.toplist-container{
-  position: relative;
- 
-
-  .loading-container{
-    width: 100%;
-    height: 100vh;
-    background: #fff;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  .toplist-container{
+    position: relative;
   
-  .topic-list {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: $shadow;
-    box-sizing: border-box;
-    background: #fff;
-    
-    display: flex;
-    flex-direction: column;
-    
-    .item:hover {
-      background: #f5f5f5;
-      cursor: pointer;
-      transition: all .3s;
-    }
 
-    .item:first-child:hover{
-      border-radius: 10px 10px 0 0;
-    }
-
-    .item:last-child:hover{
-      border-radius: 0 0 10px 10px;
-    }
-
-    .pagination{
-      margin: 20px auto;
-    }
-
-    .current-tab-mobile{
-      display: none;
+    .loading-container{
       width: 100%;
-      height: 40px;
-      line-height: 40px;
-      text-align: left;
-      text-indent: 25px;
-      border-bottom: $border;
-      color: #000;
-      font-weight: bold;
-      margin-right: 40px;
+      height: 100vh;
+      background: #fff;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
+    
+    .topic-list {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: $shadow;
+      box-sizing: border-box;
+      background: #fff;
+      
+      display: flex;
+      flex-direction: column;
+      
+      .item:hover {
+        background: #f5f5f5;
+        cursor: pointer;
+        transition: all .3s;
+      }
 
-    @media screen and (max-width: 768px) {
+      .item:first-child:hover{
+        border-radius: 10px 10px 0 0;
+      }
+
+      .item:last-child:hover{
+        border-radius: 0 0 10px 10px;
+      }
+
       .pagination{
-        margin: 10px auto;
+        margin: 20px auto;
       }
 
       .current-tab-mobile{
-        display: block
+        display: none;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        text-align: left;
+        text-indent: 25px;
+        border-bottom: $border;
+        color: #000;
+        font-weight: bold;
+        margin-right: 40px;
+      }
+
+      @media screen and (max-width: 768px) {
+        .pagination{
+          margin: 10px auto;
+        }
+
+        .current-tab-mobile{
+          display: block
+        }
       }
     }
   }
-}
-  
 </style>
+
+<style lang="scss">
+@import '../assets/styles/common.scss';
+#nprogress {
+   .bar {
+      background: $nodeGreen !important; //顶部加载条自定义颜色
+    }
+ }
+</style>
+
+
+

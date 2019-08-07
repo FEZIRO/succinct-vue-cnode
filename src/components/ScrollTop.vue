@@ -1,10 +1,18 @@
 <template>
-  <div class="scroll-top-tag" @click="srcollToTop">↑</div>
+  <div class="scroll-top-tag" 
+    @click="srcollToTop"
+    :style="{'display': show ? 'block' :'none'}">↑</div>
 </template>
 
 <script>
 export default {
   name: "ScrollTop",
+  props:{
+    show:{
+      type:Boolean,
+      default: false
+    }
+  },
   methods: {
     srcollToTop() {
       let timerId = null;
@@ -17,7 +25,7 @@ export default {
           cancelAnimationFrame(timerId);
         }
       });
-    }
+    },
   }
 };
 </script>

@@ -24,7 +24,6 @@ export default {
       requestAuthorData(this.$route.query.name)
         .then((res)=>{
           this.authorData = res ;
-          
         })
     }
   },
