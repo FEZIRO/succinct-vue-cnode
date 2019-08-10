@@ -44,11 +44,11 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    changeHeaderNavShow(state) {
+    CHNAGE_HEADER_NAV_SHOW(state) {
       state.isShowNavTab = !state.isShowNavTab
     },
 
-    changeDevice(state,device){
+    CHANGE_DEVICE(state,device){
       state.currentDevice = device
     }
   },

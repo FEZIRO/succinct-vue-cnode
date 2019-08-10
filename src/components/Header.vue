@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     handleNavButtonClick() {
-      this.$store.commit("changeHeaderNavShow");
+      this.$store.commit("CHNAGE_HEADER_NAV_SHOW");
     },
     handleHeaderClick() {
       this.$router.push({

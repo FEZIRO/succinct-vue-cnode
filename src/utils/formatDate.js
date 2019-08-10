@@ -1,10 +1,13 @@
-// let dateTime = '2019-06-19T09:33:35.795Z';
-
-
+/**
+ * 转换时间为本地格式
+ * @param {Date} dateTime 
+ * @param {Number} type 
+ * type = 1 返回日期
+ * type = 2 返回时间
+ * type = 3 返回日期和时间
+ */
 export const getDateTime = function(dateTime,type = 1) {
   let loaclDate = new Date(dateTime).toLocaleDateString();
-  //let temp = loaclDate.split('/');
-  //let loaclDate = `${temp[0]}年${temp[1]}月${temp[2]}日`;
   let loaclTime = new Date(dateTime).toLocaleTimeString('zh-CN',{ hour12: false})
   let localDateTime = new Date(dateTime).toLocaleString('zh-CN',{ hour12: false})
 

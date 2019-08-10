@@ -33,7 +33,7 @@ export default {
       })
       this.currentTab = tabId
       window.scrollTo(0,0)
-      this.$store.commit('changeHeaderNavShow')
+      this.$store.commit('CHNAGE_HEADER_NAV_SHOW')
     }
   },
   watch: {

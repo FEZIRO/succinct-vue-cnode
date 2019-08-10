@@ -5,11 +5,15 @@ const TOPICS = '/topics'
 const TOPIC_CONTENT ='/topic/'
 const AUTHOR_DATA = '/user/'
 
-export const requestTopics = function(data) {
+/**
+ * 请求主题内容列表
+ * @param {String} data 主题名 
+ */
+export const requestTopics = function(topic) {
   return new Promise((resolve,reject)=>{
     axios
       .get(CNODE_API_BASE+TOPICS,{
-        params: data
+        params: topic
       })
       .then((res)=>{
         if(res.data.success){
@@ -25,6 +29,10 @@ export const requestTopics = function(data) {
   })
 }
 
+/**
+ * 获取文章内容
+ * @param {String} id 文章id 
+ */
 export const requestTopicContent = function(id) {
   return new Promise((resolve,reject)=>{
     axios
@@ -43,6 +51,10 @@ export const requestTopicContent = function(id) {
   })
 }
 
+/**
+ * 获取作者个人信息
+ * @param {String} loginname 作者登录名字 
+ */
 export const requestAuthorData = function(loginname) {
   return new Promise((resolve,reject)=>{
     axios

@@ -13,13 +13,6 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/common.scss';
 
-/* .loading-container {
- 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-   */
   .loading {
     width: 50px;
     height: 50px;
@@ -30,7 +23,6 @@ export default {
     border-radius: 50%;
     box-sizing: border-box;
     animation: rotation .5s infinite linear;  
-   
   }
 
   @keyframes rotation {

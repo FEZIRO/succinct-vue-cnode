@@ -34,9 +34,9 @@ export default {
       let clientWidth =
         document.documentElement.clientWidth || document.body.clientHeight;
       if (clientWidth < 768) {
-        this.$store.commit("changeDevice", "mobile");
+        this.$store.commit("CHANGE_DEVICE", "mobile");
       } else {
-        this.$store.commit("changeDevice", "computer");
+        this.$store.commit("CHANGE_DEVICE", "computer");
       }
     },
 
