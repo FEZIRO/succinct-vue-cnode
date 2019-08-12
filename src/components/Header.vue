@@ -90,8 +90,8 @@ export default {
     line-height: 60px;
     background: #fff;
     .header-logo {
-      height: 50px;
-      line-height: 50px;
+      height: 55px;
+      line-height: 55px;
       width: 100px;
       float: left;
       margin-left: 50px;
@@ -126,7 +126,7 @@ export default {
     header {
       .header-logo {
         margin: 0 auto;
-        margin-left: 15px;
+        margin-left: 20px;
       }
       .cnode-link {
         display: none;
