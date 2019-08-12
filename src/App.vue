@@ -41,15 +41,15 @@ export default {
     },
 
     onScrollChange() {
-      //滚动监听节流
-      window.addEventListener("scroll", throttleFn(() => {
-        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        if (scrollTop > 700) {
-          this.isShowScrollTopButton = true;
-        } else {
-          this.isShowScrollTopButton = false;
+      
+      window.addEventListener("scroll", () => {
+          let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+          if (scrollTop > 700) {
+            this.isShowScrollTopButton = true;
+          } else {
+            this.isShowScrollTopButton = false;
+          }
         }
-        },500)
       )
     }
   },

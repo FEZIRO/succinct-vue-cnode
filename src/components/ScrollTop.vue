@@ -15,16 +15,17 @@ export default {
   },
   methods: {
     srcollToTop() {
-      let timerId = null;
-      timerId = requestAnimationFrame(function toTop() {
-        let top = document.documentElement.scrollTop;
-        if (top > 0) {
-          document.documentElement.scrollTop -= 100;
-          timerId = requestAnimationFrame(toTop);
-        } else {   
-          cancelAnimationFrame(timerId);
-        }
-      });
+      // let timerId = null;
+      // timerId = requestAnimationFrame(function toTop() {
+      //   let top = document.documentElement.scrollTop || document.body.scrollTop;
+      //   if (top > 0) {
+      //     document.documentElement.scrollTop -= 100;
+      //     timerId = requestAnimationFrame(toTop);
+      //   } else {   
+      //     cancelAnimationFrame(timerId);
+      //   }
+      // });
+      window.scrollTo(0,0)
     },
   }
 };
@@ -41,7 +42,7 @@ export default {
   height: 50px;
   line-height: 50px;
   border-radius: 10px;
-  box-shadow: $shadow;
+  box-shadow: 0 0 10px 0 #ccc;
   font-size: 20px;
   color: #555;
   background: #fff;

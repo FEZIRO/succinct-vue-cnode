@@ -19,7 +19,7 @@ export const requestTopics = function(topic) {
         if(res.data.success){
           resolve(res.data.data)
         }else{
-          reject(res);
+          reject();
         }
       })
       .catch(e=>{
@@ -41,7 +41,7 @@ export const requestTopicContent = function(id) {
         if(res.data.success){
           resolve(res.data.data)
         }else{
-          reject(res);
+          reject();
         }
       })
       .catch(e=>{
@@ -63,7 +63,7 @@ export const requestAuthorData = function(loginname) {
         if(res.data.success){
           resolve(res.data.data)
         }else{
-          reject(res);
+          reject();
         }
       })
       .catch(e=>{
