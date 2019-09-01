@@ -10,3 +10,11 @@ $border: 1px solid rgba(0, 0, 0, .05);
   overflow: hidden;
   white-space: nowrap;
 }
+
+@mixin tag($fontSize,$padding,$radius) {
+  font-size: $fontSize;
+  background: $nodeGreen;
+  color: #fff;
+  padding: $padding;
+  border-radius: $radius;
+}

@@ -20,8 +20,19 @@ mark{background-color:transparent}
 a,ins,s,u,del{text-decoration:none}
 sup,sub{vertical-align:baseline}
 html {overflow-x: hidden;height: 100%;font-size: 50px;-webkit-tap-highlight-color: transparent;}
-body {font-family: monospace;color: #333;font-size: .28em;line-height: 1;-webkit-text-size-adjust: none;}
+body {font-family:'webfont' ;color: #333;font-size: .28em;line-height: 1;-webkit-text-size-adjust: none;}
 hr {height: .02rem;margin: .1rem 0;border: medium none;border-top: .02rem solid #cacaca;}
 a {color: #25a4bb;text-decoration: none;}
 * {box-sizing: border-box;}
+
+@font-face {
+  font-family: 'webfont';
+  font-display: swap;
+  src: url('//at.alicdn.com/t/webfont_aawd6p2trzr.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/webfont_aawd6p2trzr.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/webfont_aawd6p2trzr.woff2') format('woff2'),
+  url('//at.alicdn.com/t/webfont_aawd6p2trzr.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/webfont_aawd6p2trzr.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/webfont_aawd6p2trzr.svg#Alibaba-PuHuiTi-Regular') format('svg'); /* iOS 4.1- */
+}
 

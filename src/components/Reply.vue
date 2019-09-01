@@ -95,11 +95,8 @@ export default {
       }
 
       .floor-count{
-        font-size: 12px;
-        background: $nodeGreen;
-        color: #fff;
-        padding: 5px;
-        border-radius: 5px;
+        @include tag(12px,5px,5px);
+       
       }
 
     }

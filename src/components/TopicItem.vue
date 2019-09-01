@@ -84,15 +84,10 @@ export default {
       line-height: 25px;
       margin-right: 5px;
       text-align: center;
-      /* background: rgb(197,225,15); */
-      background: $nodeGreen;
-      border-radius: 10px;
-      color:#fff;
-      font-size: 13px;
       flex-shrink: 0;
+      @include tag(13px,0,5px)
     }
     .top-tag{
-      /* background: rgb(108,194,74); */
       background: $nodeDeepGreen;
     }
     h1 {
@@ -121,7 +116,6 @@ export default {
       }
       .author-name{
         line-height: 20px;
-        
         margin-left: 5px;
       }
     }
@@ -137,12 +131,6 @@ export default {
     color: rgba(0, 0, 0, .5);
      font-weight: bold;
      justify-content: space-between;
-    .visit-conut {
-     
-    }
-    .reply-count {
-      
-    }
   }
 }
 

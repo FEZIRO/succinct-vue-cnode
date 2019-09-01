@@ -1,7 +1,7 @@
 <template>
 <div class="toplist-container">
   <div class="topic-list" v-if="topicListData"> 
-    <div class="current-tab-mobile" >{{this.$store.state.tag[this.$route.params.tab]}}</div>
+    <div class="current-tab-mobile" >{{$store.state.tag[$route.params.tab]}}</div>
     <TopicItem class="item" 
       :item-data="item"
       v-for="item of topicListData"
@@ -110,7 +110,7 @@ export default {
       box-shadow: $shadow;
       box-sizing: border-box;
       background: #fff;
-      
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       

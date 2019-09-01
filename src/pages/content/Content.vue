@@ -8,6 +8,7 @@
       <div class="user-info-container">
         <AuthorSideBar :author-data="authorData" class="author-sidebar" />
       </div>
+      
     </div>
     <div class="loading-container" v-else>
       <Loading/>
@@ -67,8 +68,8 @@ export default {
 
 <style lang="scss" scoped>
   .content-container {
-    padding: 80px 0 20px 0;
     display: flex;
+    padding-bottom: 15px;
     .content-main {
       flex-grow: 1;
     }
@@ -95,7 +96,7 @@ export default {
 
   @media screen and (max-width: 768px) {
     .content-container {
-      padding: 70px 10px 10px 10px;
+      padding: 10px 10px 10px 10px;
 
       .content-main {
         width: 100%;

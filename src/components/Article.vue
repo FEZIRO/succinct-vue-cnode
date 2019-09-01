@@ -74,13 +74,14 @@ export default {
       font-weight: bold;
       .tag {
         vertical-align: middle;
-        padding: 5px 7px;
+        //padding: 5px 7px;
         margin-right: 5px;
         text-align: center;
         background: $nodeGreen;
-        border-radius: 10px;
-        color:#fff;
-        font-size: 13px;
+        //border-radius: 5px;
+        //color:#fff;
+        //font-size: 13px;
+        @include tag(13px,5px 7px,5px)
       }
       .top-tag{
          background: $nodeDeepGreen;
@@ -104,6 +105,9 @@ export default {
       .from {
         margin-right: 10px;
         color: rgba(0, 0, 0, .5);
+        @media screen and (max-width: 768px) {
+          display: block;
+        }
       }
     }
   }

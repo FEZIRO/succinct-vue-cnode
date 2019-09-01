@@ -111,6 +111,10 @@ export default {
       font-weight: bold;
       float: right;
       margin-right: 5px;
+      transition: all 1s;
+      &:hover{
+        text-decoration: underline
+      }
     }
 
     .nav-icon {

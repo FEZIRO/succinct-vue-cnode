@@ -1,15 +1,14 @@
 <template>
   <div class="home-container">
-    <div>
+    <aside>
       <NavBar
         :shadow="this.currentDevice === 'computer'"
         v-show="this.currentDevice === 'computer'"
       />
       <LinkExchange />
       <DownloadCode />
-    </div>
+    </aside>
     <TopicList></TopicList>
-    
   </div>
 </template>
 
@@ -53,8 +52,6 @@ $width: 200px;
 
 .home-container {
   display: flex;
-  margin-top: 60px;
-  padding-top: 20px;
   max-width: 1200px;
   @media screen and (max-width: 768px) {
     padding: 10px;
@@ -90,6 +87,8 @@ $width: 200px;
       margin-left: 0;
     }
   }
+
+
 }
 </style>
 

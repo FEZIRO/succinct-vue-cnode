@@ -4,14 +4,14 @@
     <transition name="routerview">
       <router-view class="router-view"></router-view>
     </transition>
-    <ScrollTop :show="isShowScrollTopButton"/>
+    <ScrollTop :show="isShowScrollTopButton" />
+
   </div>
 </template>
 
 <script>
 import ScrollTop from "@/components/ScrollTop";
 import Header from "@/components/Header";
-import {throttleFn} from '@/utils/throttle'
 export default {
   name: "app",
   data() {
@@ -41,16 +41,15 @@ export default {
     },
 
     onScrollChange() {
-      
       window.addEventListener("scroll", () => {
-          let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-          if (scrollTop > 700) {
-            this.isShowScrollTopButton = true;
-          } else {
-            this.isShowScrollTopButton = false;
-          }
+        let scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop > 700) {
+          this.isShowScrollTopButton = true;
+        } else {
+          this.isShowScrollTopButton = false;
         }
-      )
+      });
     }
   },
 
@@ -67,31 +66,34 @@ export default {
 
 <style lang="scss" scoped>
 #app {
-}
-
-.router-view {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.routerview-enter-active {
-  animation: fadeIn 0.2s;
-}
-
-.routerview-leave-active {
-  animation: fadeIn reverse 0.2s;
-}
-
-@keyframes fadeIn {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
+  .router-view {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top:80px;
+    @media screen and (max-width: 768px){
+      margin-top:60px;
+    }
   }
 
-  to {
-    transform: translateY(0);
+  .routerview-enter-active {
+    animation: fadeIn 0.2s;
+  }
 
-    opacity: 100;
+  .routerview-leave-active {
+    animation: fadeIn reverse 0.2s;
+  }
+
+  @keyframes fadeIn {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+
+      opacity: 100;
+    }
   }
 }
 </style>

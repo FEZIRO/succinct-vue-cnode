@@ -35,7 +35,6 @@ export default {
 
 <style lang="scss" scoped>
 .author-page{
-  width: 100%;
-  padding: 80px 15px 20px 15px;
+  padding: 10px
 }
 </style>
