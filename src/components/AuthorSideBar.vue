@@ -21,7 +21,7 @@
 
   <div class="recent-topics-container">
     <div class="title">作者最近的文章</div>
-    <ul class="topics-list" v-if="authorData.recent_topics.length !== 0">
+    <ul class="topics-list" v-if="authorData.recent_topics">
       <li class="list-item"
         @click="handleItemClick(item)" 
         v-for="item in authorData.recent_topics"
@@ -36,7 +36,7 @@
 
   <div class="recent-replies-container">
     <div class="title">作者最近回复</div>
-    <ul class="topics-list" v-if="authorData.recent_replies.length !== 0">
+    <ul class="topics-list" v-if="authorData.recent_replies">
       <li class="list-item"
       @click="handleItemClick(item)"  
         v-for="item in authorData.recent_replies"
@@ -61,6 +61,7 @@ export default {
   props: {
     authorData: Object
   },
+ 
   filters: {
     getLocalDateTime(dateTime) {
       return getDateTime(dateTime,3)

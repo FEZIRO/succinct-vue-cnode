@@ -21,11 +21,13 @@ import DownloadCode from "@/components/DownloadCode";
 
 import { mapState } from "vuex";
 
+
 export default {
   name: "Home",
   data () {
     return {
-      isShowScrollTopButton: false
+      isShowScrollTopButton: false,
+      topicListData: {}
     }
   },
   components: {
@@ -39,10 +41,8 @@ export default {
     ...mapState(["currentDevice"])
   },
   methods: {
-    
   },
   mounted() {
-    
   }
 };
 </script>

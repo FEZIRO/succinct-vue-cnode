@@ -1,4 +1,5 @@
 import axios from "axios";
+import NProgress from 'nprogress'
 
 const CNODE_API_BASE = 'https://cnodejs.org/api/v1'
 const TOPICS = '/topics'
@@ -11,6 +12,7 @@ const AUTHOR_DATA = '/user/'
  */
 export const requestTopics = function(topic) {
   return new Promise((resolve,reject)=>{
+    NProgress.start();
     axios
       .get(CNODE_API_BASE+TOPICS,{
         params: topic
@@ -18,6 +20,7 @@ export const requestTopics = function(topic) {
       .then((res)=>{
         if(res.data.success){
           resolve(res.data.data)
+          NProgress.done();
         }else{
           reject();
         }
@@ -35,11 +38,13 @@ export const requestTopics = function(topic) {
  */
 export const requestTopicContent = function(id) {
   return new Promise((resolve,reject)=>{
+    NProgress.start();
     axios
       .get(CNODE_API_BASE+TOPIC_CONTENT+id)
       .then((res)=>{
         if(res.data.success){
-          resolve(res.data.data)
+          resolve(res.data.data);
+          NProgress.done();
         }else{
           reject();
         }
@@ -57,11 +62,13 @@ export const requestTopicContent = function(id) {
  */
 export const requestAuthorData = function(loginname) {
   return new Promise((resolve,reject)=>{
+    NProgress.start();
     axios
       .get(CNODE_API_BASE+AUTHOR_DATA+loginname)
       .then((res)=>{
         if(res.data.success){
-          resolve(res.data.data)
+          resolve(res.data.data);
+          NProgress.done();
         }else{
           reject();
         }

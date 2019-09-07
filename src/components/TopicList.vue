@@ -23,9 +23,7 @@ import { requestTopics } from '@/utils/requestApi';
 import TopicItem from '@/components/TopicItem';
 import Pagination from '@/components/Pagination';
 import Loading from '@/components/Loading';
-import NProgress from 'nprogress'
-NProgress.configure({ showSpinner: false });
-import 'nprogress/nprogress.css'
+
 
 export default {
   name: 'TopicList',
@@ -36,18 +34,16 @@ export default {
   },
   data () {
     return {
-      topicListData: null 
+      topicListData: null
     }
   },
   methods: {
     //根据tab的名字获取相应tab的内容
     getData(queryParams) {
-      NProgress.start();
       requestTopics(queryParams)
       .then((res)=>{
         this.topicListData = res;
         window.scrollTo(0,0);
-        NProgress.done();
       });
      
     },
@@ -88,7 +84,6 @@ export default {
   .toplist-container{
     position: relative;
   
-
     .loading-container{
       width: 100%;
       height: 100vh;

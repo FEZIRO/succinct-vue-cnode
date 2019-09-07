@@ -5,7 +5,6 @@
       <router-view class="router-view"></router-view>
     </transition>
     <ScrollTop :show="isShowScrollTopButton" />
-
   </div>
 </template>
 

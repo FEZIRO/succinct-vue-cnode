@@ -24,6 +24,8 @@ import AuthorSideBar from "@/components/AuthorSideBar";
 import Header from "@/components/Header";
 import Loading from "@/components/Loading";
 import Reply from "@/components/Reply";
+import NProgress from 'nprogress'
+
 export default {
   name: "Content",
   data() {
