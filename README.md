@@ -31,4 +31,4 @@ vue + vue-cli 3 + vue-router + vuex + axios + sass +flex + nprogress
 8、使用nprogress插件实现顶部加载条
 
 ------
-
+code by FEZIRO
